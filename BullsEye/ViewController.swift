@@ -11,10 +11,12 @@ class ViewController: UIViewController {
 
     var currentValue: Int = 50
     var targetValue: Int = 0
+    var score = 0
     
     @IBOutlet weak var targerLabel: UILabel!
     
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var scoreLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,7 @@ class ViewController: UIViewController {
     
     func updateLabels() {
         targerLabel.text = String(targetValue)
+        scoreLabel.text = String(score)
     }
     
     func startNewRound() {
@@ -46,9 +49,15 @@ class ViewController: UIViewController {
         
         let difference = abs(currentValue - targetValue)
         
-        let message = "The value of the slider is: \(currentValue)" +
-        "\nThe target value is: \(targetValue)" +
-        "\nThe difference is: \(difference)"
+        let points = 100 - difference
+        
+        score += points
+        
+//        let message = "The value of the slider is: \(currentValue)" +
+//        "\nThe target value is: \(targetValue)" +
+//        "\nThe difference is: \(difference)"
+        
+        let message = "You scored \(points) points"
         
         let alert = UIAlertController(title: "Hello, world!", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
