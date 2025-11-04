@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     var currentValue: Int = 50
     var targetValue: Int = 0
     
+    @IBOutlet weak var targerLabel: UILabel!
+    
     @IBOutlet weak var slider: UISlider!
     
     override func viewDidLoad() {
@@ -21,12 +23,17 @@ class ViewController: UIViewController {
 //        currentValue = lroundf(slider.value)
 //        targetValue = 1 + Int(arc4random_uniform(100))
         startNewRound()
+        updateLabels()
         
     }
 
     override func didReceiveMemoryWarning() {
         return super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateLabels() {
+        targerLabel.text = String(targetValue)
     }
     
     func startNewRound() {
@@ -46,6 +53,7 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
         
         self.startNewRound()
+        updateLabels()
     }
     
     @IBAction func sliderMoved(_ slider: UISlider) {
